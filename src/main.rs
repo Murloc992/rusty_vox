@@ -9,7 +9,7 @@ mod opengl;
 
 fn main() {
     let path = env::current_dir().unwrap();
-    println!("Current Path: {} > ", path.display());
+    println!("Current Path: {}>", path.display());
 
     let mut glfw = glfw::init(glfw::fail_on_errors).unwrap();
     glfw.window_hint(glfw::WindowHint::ContextVersion(3, 3));
@@ -40,9 +40,9 @@ fn main() {
         clear_color(Color(0.4, 0.4, 0.4, 1.0));
     }
 
-    let mut regarded = opengl::shader::Shader {id: 0};
+    let mut regarded = opengl::shader::Shader { id: 0 };
 
-    regarded.load("data\\shaders\\basic.vert", "data\\shaders\\basic.frag");
+    regarded.load("data\\shaders\\basic");
 
     let vertecies = [-0.5f32, -0.5, 0.0, 0.5, -0.5, 0.0, 0.0, 0.5, 0.0];
 
@@ -90,7 +90,7 @@ fn main() {
             handle_window_event(&mut window, event);
         }
 
-        clear_color(Color(0.8, 0.5, 0.5, 1.0));
+        clear_color(Color(0.5, 0.5, 0.8, 1.0));
 
         unsafe {
             gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);

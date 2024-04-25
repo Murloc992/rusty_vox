@@ -30,11 +30,16 @@ fn check_for_shader_error(shader_id: u32, compile: bool) {
 }
 
 impl Shader {
-    pub fn load(&mut self, vert_path: &str, frag_path: &str) -> u32 {
-        let vert_content = fs::read_to_string(env::current_dir().unwrap().join(vert_path))
-            .expect("Vert file not found!");
-        let frag_content = fs::read_to_string(env::current_dir().unwrap().join(frag_path))
-            .expect("Frag file not found!");
+    pub fn load(&mut self, path: &str) -> u32 {
+        let mut vert_shader_path = env::current_dir().unwrap().join(path);
+        vert_shader_path.set_extension("vert");
+        println!("Loading Vert Shader: {}", &vert_shader_path.display());
+        let vert_content = fs::read_to_string(vert_shader_path).expect("Vert file not found!");
+
+        let mut frag_shader_path = env::current_dir().unwrap().join(path);
+        frag_shader_path.set_extension("frag");
+        println!("Loading Frag Shader: {}", &frag_shader_path.display());
+        let frag_content = fs::read_to_string(frag_shader_path).expect("Frag file not found!");
 
         let vertex_shader = unsafe { gl::CreateShader(gl::VERTEX_SHADER) };
         let fragment_shader = unsafe { gl::CreateShader(gl::FRAGMENT_SHADER) };

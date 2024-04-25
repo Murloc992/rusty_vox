@@ -2,5 +2,5 @@
 out vec4 Color;
 void main()
 {
-    Color = vec4(0.9, 0.5, 0.2, 1.0);
+    Color = vec4(0.8, 0.8, 0.8, 1.0);
 }
